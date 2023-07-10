@@ -1,0 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
+#new-arrivals img {
+    aspect-ratio: 1;
+}

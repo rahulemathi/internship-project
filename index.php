@@ -1,6 +1,26 @@
 <?php
 require_once "./config.php";
 session_start();
+if (!empty($_SESSION["id"])) {
+    header("Location: login.php");
+  }
+  $name = $_SESSION['username'];
+  
+  $_SESSION['username'] = $name;
+  
+  $uid = $_SESSION['id'];
+  
+  if(!isset($_GET['cart'])){
+    if(empty($_SESSION['cart'])){
+      $_SESSION['cart']=array();
+    }
+  }
+  
+  if(!isset($_GET['dpp'])){
+    if(empty($_SESSION['dpp'])){
+      $_SESSION['dpp'] = array();
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +62,9 @@ session_start();
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $row['name']; ?></h5>
                                     <p class="card-text"><?php echo substr($row['description'], 0, 300); ?></p>
+                                    <p class="text-success">&#8377; <?php echo $row['dprice'];?></p>
+                                    <p class="text-danger text-decoration-line-through">&#8377; <?php echo $row['price'];?></p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -79,9 +102,11 @@ session_start();
                             echo $row['description'];
                         }
                         ?></p>
-                        <form action="" method="post">
+                        <p class="text-success">&#8377; <?php echo $row['dprice'];?></p>
+                                    <p class="text-danger text-decoration-line-through">&#8377; <?php echo $row['price'];?></p>
+                        <form action="" method="get">
                         <a href="" class="btn btn-success">Buy</a>
-                        <a type="submit" href="cart.php?id=<?php echo $row['id'];?>&dpp=<?php echo $row['dprice'];?>" class="btn btn-dark" name="addtocart" value="addtocart">Add to cart </a>
+                        <a type="submit" href="addtocart.php?id=<?php echo $row['id'];?>&dpp=<?php echo $row['dprice'];?>&valid=200" class="btn btn-dark" name="cart" value="addtocart">Add to cart </a>
                         </form>
                        
                     </div>

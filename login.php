@@ -7,7 +7,7 @@ if(!empty($_SESSION["id"])){
 if(isset($_GET["submit"])){
     $username = $_GET["username"];
   $password = $_GET["password"];
-  $query = "SELECT id,username FROM login WHERE  username ='$username' or id='$username' AND password ='$password'";
+  $query = "SELECT id,username FROM login WHERE  username ='$username' or email='$username' AND password ='$password'";
   $result = mysqli_query($link, $query);
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){

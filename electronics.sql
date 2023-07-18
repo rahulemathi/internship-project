@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2023 at 12:20 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jul 18, 2023 at 12:32 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `electronics`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(300) NOT NULL,
+  `password` varchar(300) NOT NULL,
+  `admin` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `username`, `email`, `password`, `admin`) VALUES
+(1, 'admin', 'admin@admin.com', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -41,7 +62,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `dprice`, `image`) VALUES
-(1, 'AMD GPU 7900 XTX', 'AMD has just launched the first two new entries in its cutting-edge Radeon 7000 series of graphics cards, starting with the flagship $999 Radeon RX 7900 XTX. With this release, AMD is taking a notably different approach from how its main competitor, Nvidia, positioned its GeForce RTX 40-series cards launched in October 2022. Instead of shooting for the moon to release a GPU that vies for dominance as the single fastest card money can buy, AMD aims to win over gamers with a simply better value. Though the AMD Radeon RX 7900 XTX has its limitations, if you’ve been waiting for a powerful graphics card that can compete with the Nvidia GeForce RTX 4080 at a more attractive price, this is the card for you. And for that, we give the Radeon RX 7900 XTX our Editors  Choice award for high-end graphics cards.', '150000', '110000', '7900-xtx.jpg'),
 (2, 'air cooler', 'Air cooler takes in fresh air from outside and cools it through wet absorbent pads. Air conditioners make use of a chemical coolant to lower the temperature in the room. Comfort. Not as quick and great as the air conditioner. They provide great comfort in terms of cooling the room really quickly.', '50000', '40000', 'ac.jpg'),
 (3, 'Air Cooler Tower', 'Air coolers make use of a simple air moving system that pulls fresh air from the outside and drives it through the wet cooling pads. The evaporation of water in these cooling pads brings down the temperature of the air, which is then blown out by the fan.', '15000', '10000', 'air-cooler.jpg'),
 (4, 'Air Pods', 'AirPods deliver an unparalleled wireless headphone experience, from magical setup to high-quality sound. Available with free engraving.AirPods deliver an unparalleled wireless headphone experience, from magical setup to high-quality sound. Available with free engraving.AirPods deliver an unparalleled wireless headphone experience, from magical setup to high-quality sound. Available with free engraving.AirPods deliver an unparalleled wireless headphone experience, from magical setup to high-quality sound. Available with free engraving.', '20000', '15000', 'airpods.jpg'),
@@ -59,12 +79,17 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `dprice`, `image`)
 (16, 'NVME M.2 1 TB', 'M.2, pronounced m dot two[1] and formerly known as the Next Generation Form Factor (NGFF), is a specification for internally mounted computer expansion cards and associated connectors. M.2 replaces the mSATA standard, which uses the PCI Express Mini Card physical card layout and connectors. Employing a more flexible physical specification, M.2 allows different module widths and lengths, which, paired with the availability of more advanced interfacing features, makes M.2 more suitable than mSATA in general for solid-state storage applications, particularly in smaller devices such as ultrabooks and tablets.[2][3][4]', '8000', '6000', 'ssd.jpg'),
 (17, 'Surround Sound', 'Surround sound is a technique for enriching the fidelity and depth of sound reproduction by using multiple audio channels from speakers that surround the listener (surround channels). Its first application was in movie theaters. Prior to surround sound, theater sound systems commonly had three screen channels of sound that played from three loudspeakers (left, center, and right) located in front of the audience. Surround sound adds one or more channels from loudspeakers to the side or behind the listener that are able to create the sensation of sound coming from any horizontal direction (at ground level) around the listener.', '100000', '80000', 'surround-speaker.jpg'),
 (18, 'Washing Machine', 'LG 7.5 kg Semi Automatic Top Load Washing Machine (P7530SGAZ) Price in India. LG 7.5 kg Semi Automatic Top Load Washing Machine (P7530SGAZ) price in India starts from ₹ 14,187. The lowest price of LG 7.5 kg Semi Automatic Top Load Washing Machine (P7530SGAZ) is ₹ 14,187 at Flipkart on 28th June 2023.', '30000', '28000', 'washing-machine.jpg'),
-(19, 'Washing Machine', 'Fully Automatic Top Load Washing Machine (P7530SGAZ) Price in India. LG 7.5 kg Semi Automatic Top Load Washing Machine (P7530SGAZ) price in India  The lowest price of LG 7.5 kg Semi Automatic Top Load Washing Machine.', '24000', '23500', 'washing-machine-advance.jpg'),
-(20, 'Ladies watch', 'Which colour of timepiece would look best on a woman? A watch with a stainless steel, silver, or white gold case will complement a woman with a cool skin tone. Women with fair skin should select a wristwatch with a gold or rose gold case.', '2000', '1900', 'watch.png');
+(19, 'Washing Machine', 'Fully Automatic Top Load Washing Machine (P7530SGAZ) Price in India. LG 7.5 kg Semi Automatic Top Load Washing Machine (P7530SGAZ) price in India  The lowest price of LG 7.5 kg Semi Automatic Top Load Washing Machine.', '24000', '23500', 'washing-machine-advance.jpg');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -75,6 +100,12 @@ ALTER TABLE `products`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`

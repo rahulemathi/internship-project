@@ -41,7 +41,7 @@
     <span class="visually-hidden">unread messages</span>
   </span></a>';
           }else if(empty($_SESSION["username"])){
-            
+            echo "";
           };
           ?>
         </li>

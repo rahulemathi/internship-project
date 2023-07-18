@@ -45,6 +45,28 @@
           };
           ?>
         </li>
+
+        <li class="nav-item">
+          <?php 
+         if(!empty($_SESSION["main"])){
+          echo '<a class="nav-link" href="items.php">Items</a>';
+         }
+         
+         
+         ?>
+        </li>
+
+        
+        <li class="nav-item">
+          <?php 
+         if(!empty($_SESSION["main"])){
+          echo '<a class="nav-link" href="insert-products.php">Add Items</a>';
+         }
+         
+         
+         ?>
+        </li>
+        
       </ul>
       <form class="d-flex" action="search.php" method="get">
         <input class="form-control me-2" type="search" name="searchword" placeholder="Search" aria-label="Search">

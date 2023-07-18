@@ -1,5 +1,9 @@
 <?php 
 require_once("config.php");
+if (empty($_SESSION["id"])) {
+  header("Location: login.php");
+}
+
 
 if(isset($_POST['submit'])){
     $target_dir = "images/";

@@ -22,70 +22,29 @@ if (empty($_SESSION["id"])) {
     }
   }
 
+
+  if(isset($_GET["search"])){
+    $search = $_GET["searchword"];
+  }
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronics Store</title>
+    <title>Search</title>
     <?php include("./includes/header.php"); ?>
 </head>
-
 <body>
-
-    <div class="container-fluid gx-0">
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <img src="./images/banner-image.png" alt="banner image">
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <h1 class="text-center text-primary">New arrivals </h1>
-
-            <?php
-            $num1 = rand(1, 10);
-            $num2 = rand(11, 20);
-            $query = "SELECT * FROM products where id between $num1 and $num2  LIMIT 3";
-
-            if ($result = mysqli_query($link, $query)) {
-                if (mysqli_num_rows($result) > 0) {
-                    $i = 0;
-                    while ($row = mysqli_fetch_array($result)) { ?>
-                        <div id="new-arrivals" class="col-sm-12 col-md-4">
-                            <div class="card" style="width: 18rem;">
-                                <img src="images/<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['image']; ?>">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['name']; ?></h5>
-                                    <p class="card-text"><?php echo substr($row['description'], 0, 300); ?></p>
-                                    <p class="text-success">&#8377; <?php echo $row['dprice'];?></p>
-                                    <p class="text-danger text-decoration-line-through">&#8377; <?php echo $row['price'];?></p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-            <?php }
-                }
-            }
-
-            ?>
-
-
-        </div>
-    </div>
-
-
-
-    <div class="container">
+<div class="container">
         <div class="row">
             <h1 class="text-center">Our Products</h1>
         <?php
-            $query = "SELECT * FROM products LIMIT 6";
+            $query = "SELECT * FROM products where name like '%$search%'";
 
             if ($result = mysqli_query($link, $query)) {
                 if (mysqli_num_rows($result) > 0) {
@@ -116,6 +75,8 @@ if (empty($_SESSION["id"])) {
             <?php }
                 }
                 mysqli_free_result($result);
+            }else{
+                echo "<h1>No Result found for the search </h1>";
             }
 
             ?>
@@ -123,14 +84,6 @@ if (empty($_SESSION["id"])) {
         </div>
     </div>
 
-
-
-
-
-
-
-
     <?php include("./includes/footer.php"); ?>
 </body>
-
 </html>

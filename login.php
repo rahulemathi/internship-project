@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("./config.php");
 session_start();
 if(!empty($_SESSION["id"])){
@@ -7,7 +7,7 @@ if(!empty($_SESSION["id"])){
 if(isset($_GET["submit"])){
     $username = $_GET["username"];
   $password = $_GET["password"];
-  $query = "SELECT id,username FROM login WHERE  username ='$username' or email='$username' AND password ='$password'";
+  $query = "SELECT id,username,admin FROM login WHERE  username ='$username' or email='$username' AND password ='$password'";
   $result = mysqli_query($link, $query);
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
@@ -15,6 +15,7 @@ if(isset($_GET["submit"])){
       $_SESSION["login"] = true;
       $_SESSION["id"] = $row["id"];
       $_SESSION["username"] = $row["username"];
+      $_SESSION["main"] = $row["admin"];
       header("Location: index.php");
     }
     else{

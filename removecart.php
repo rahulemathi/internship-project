@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if (empty($_SESSION["id"])) {
+    header("Location: login.php");
+  }
 if(empty($_GET['valid'])){
     header("location:index.php");
 }

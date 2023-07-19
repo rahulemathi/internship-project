@@ -1,6 +1,7 @@
 <?php 
 require_once("config.php");
-if (empty($_SESSION["id"])) {
+session_start();
+if (empty($_SESSION["main"])) {
   header("Location: login.php");
 }
 

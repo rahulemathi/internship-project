@@ -9,11 +9,17 @@ if (empty($_SESSION["id"])) {
   $_SESSION['username'] = $name;
   
   $uid = $_SESSION['id'];
+  if(!isset($_GET['cart'])){
+    if(empty($_SESSION['cart'])){
+      $_SESSION['cart']=array();
+    }
+  }
   
-  if(isset($_GET['checkout'])){
-    unset($_SESSION['cart']);
-    unset($_SESSION['dpp']);
-}
+  if(!isset($_GET['dpp'])){
+    if(empty($_SESSION['dpp'])){
+      $_SESSION['dpp'] = array();
+    }
+  }
 
 ?>
 

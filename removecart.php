@@ -25,7 +25,7 @@ if(empty($_GET['valid'])){
     if(isset($_GET['checkout'])){
         unset($_SESSION['cart']);
         unset($_SESSION['dpp']);
-       header("location:success.php");
+       header("location:checkoutstatus.php");
     }
 ?>
 
